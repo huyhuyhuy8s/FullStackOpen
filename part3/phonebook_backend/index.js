@@ -37,10 +37,6 @@ let phonebook = [
     }
 ]
 
-app.get('/', (req, res) => {
-    response.send()
-})
-
 app.get('/api/persons', (request, response) => {
     if (phonebook) response.json(phonebook)
     else response.status(404).end()
