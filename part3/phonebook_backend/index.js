@@ -2,8 +2,9 @@ const express = require('express')
 const morgan = require('morgan');
 const app = express();
 
+const PORT = process.env.PORT || 3001
 // Middleware
-const PORT = 3001
+app.use(express.static('dist'))
 app.use(express.json())
 
 morgan.token("body", (req) => JSON.stringify(req.body));
@@ -35,6 +36,10 @@ let phonebook = [
         "number": "39-23-6423122"
     }
 ]
+
+app.get('/', (req, res) => {
+    response.send()
+})
 
 app.get('/api/persons', (request, response) => {
     if (phonebook) response.json(phonebook)
