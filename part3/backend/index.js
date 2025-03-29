@@ -1,6 +1,5 @@
 const express = require('express')
 const app = express()
-const cors = require('cors'); //cross-origin resource sharing
 
 let notes = [
     {
@@ -29,7 +28,6 @@ const requestLogger = (request, response, next) => {
 }
 
 // Middleware
-app.use(cors())
 app.use(express.static('dist'))
 app.use(express.json())
 app.use(requestLogger)
