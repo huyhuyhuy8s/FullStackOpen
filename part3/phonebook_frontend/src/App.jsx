@@ -63,12 +63,24 @@ const App = () => {
     });
 
     if (!check) {
-      personsServices.create(nameObject).then((returnedPerson) => {
-        setNotification({ message: `Added ${returnedPerson.name}`, code: 200 });
-        setPersons(persons.concat(returnedPerson));
-        setNewName("");
-        setNewNumber("");
-      });
+      personsServices
+        .create(nameObject)
+        .then((returnedPerson) => {
+          setNotification({
+            message: `Added ${returnedPerson.name}`,
+            code: 200,
+          });
+          setPersons(persons.concat(returnedPerson));
+          setNewName("");
+          setNewNumber("");
+        })
+        .catch((error) => {
+          setNotification({
+            message: error.message,
+            code: 404,
+          });
+          console.log(error.response.data.error);
+        });
     } else {
       check = !check;
     }
